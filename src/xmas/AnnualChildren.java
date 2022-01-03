@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AnnualChildren {
-    class Children {
+    static class Children {
         List<Child> children;
 
         public Children() {
@@ -16,7 +16,6 @@ public class AnnualChildren {
             children.add(child);
         }
 
-        // @NotNull
         public List<Child> getChildren() {
             return children;
         }
@@ -42,7 +41,6 @@ public class AnnualChildren {
         }
     }
 
-    //@NotNull
     public Children[] getAnnualChildren() {
         return annualChildren;
     }

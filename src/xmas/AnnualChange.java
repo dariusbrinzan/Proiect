@@ -20,7 +20,6 @@ public class AnnualChange {
         this.childrenUpdates = childrenUpdates;
     }
 
-    //@NotNull
     public Double getNewSantaBudget() {
         return newSantaBudget;
     }
@@ -29,7 +28,6 @@ public class AnnualChange {
         this.newSantaBudget = newSantaBudget;
     }
 
-    //@NotNull
     public Gift[] getNewGifts() {
         return newGifts;
     }
@@ -38,7 +36,6 @@ public class AnnualChange {
         this.newGifts = newGifts;
     }
 
-    //@NotNull
     public Child[] getNewChildren() {
         return newChildren;
     }
@@ -47,7 +44,6 @@ public class AnnualChange {
         this.newChildren = newChildren;
     }
 
-    //@NotNull
     public ChildUpdate[] getChildrenUpdates() {
         return childrenUpdates;
     }
@@ -56,7 +52,7 @@ public class AnnualChange {
         this.childrenUpdates = childrenUpdates;
     }
 
-    //@Override
+    @Override
     public String toString() {
         return "AnnualChange{" +
                 "newSantaBudget=" + newSantaBudget +

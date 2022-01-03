@@ -46,7 +46,6 @@ public class InitialData {
         addGiftsToEachCategoryInMap(santaGiftsList);
     }
 
-    //@NotNull
     public List<Child> getChildren() {
         return children;
     }
@@ -55,7 +54,6 @@ public class InitialData {
         this.children = children;
     }
 
-    //@NotNull
     public Gift[] getSantaGiftsList() {
         return santaGiftsList;
     }
@@ -64,7 +62,6 @@ public class InitialData {
         this.santaGiftsList = santaGiftsList;
     }
 
-    //@NotNull
     public Map<Category, PriorityQueue<Gift>> getGiftCategoriesSortedByGiftsPrice() {
         return giftCategoriesSortedByGiftsPrice;
     }
@@ -81,7 +78,6 @@ public class InitialData {
         children.removeIf(Child::isAdult);
     }
 
-    // @NotNull
     public Double averageScoreOfChild(Child child) {
         double sum = 0.0;
         for (double score: child.getNiceScoreHistory()) {
@@ -90,7 +86,6 @@ public class InitialData {
         return sum / child.getNiceScoreHistory().size();
     }
 
-    // @NotNull
     public Double weightedAverageScoreOfChild(Child child) {
         double sum = 0.0;
         int i = 1;

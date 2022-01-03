@@ -22,10 +22,9 @@ public class Child implements Comparable<Child>, Serializable {
     private Double assignedBudget;
     private List<Gift> receivedGifts;
 
-    public final static Integer BabyMaxAge = 5;      // < 5y
-    public final static Integer KidMaxAge = 12;      // 5 - 12y (???)
-    public final static Integer TeenMaxAge = 19;     // 12 - 18y (12 again ???)
-    // private final static Integer AdultMinAge = 19; // > 18y
+    public final static Integer BabyMaxAge = 5;
+    public final static Integer KidMaxAge = 12;
+    public final static Integer TeenMaxAge = 19;
 
     public Child(final Integer id,
                  final String lastName,
@@ -46,7 +45,6 @@ public class Child implements Comparable<Child>, Serializable {
         this.receivedGifts = new ArrayList<>();
     }
 
-    //@NotNull
     public Integer getId() {
         return id;
     }
@@ -55,7 +53,6 @@ public class Child implements Comparable<Child>, Serializable {
         this.id = id;
     }
 
-    //@NotNull
     public String getLastName() {
         return lastName;
     }
@@ -64,7 +61,6 @@ public class Child implements Comparable<Child>, Serializable {
         this.lastName = lastName;
     }
 
-    //@NotNull
     public String getFirstName() {
         return firstName;
     }
@@ -73,7 +69,6 @@ public class Child implements Comparable<Child>, Serializable {
         this.firstName = firstName;
     }
 
-    //@NotNull
     public Integer getAge() {
         return age;
     }
@@ -82,7 +77,6 @@ public class Child implements Comparable<Child>, Serializable {
         this.age = age;
     }
 
-    //@NotNull
     public Cities getCity() {
         return city;
     }
@@ -91,7 +85,6 @@ public class Child implements Comparable<Child>, Serializable {
         this.city = city;
     }
 
-    //@NotNull
     public Double getNiceScore() {
         return niceScore;
     }
@@ -100,7 +93,6 @@ public class Child implements Comparable<Child>, Serializable {
         this.niceScore = niceScore;
     }
 
-    //@NotNull
     public Category[] getGiftsPreferences() {
         return giftsPreferences;
     }
@@ -121,7 +113,6 @@ public class Child implements Comparable<Child>, Serializable {
         return getAge() > 18;
     }
 
-//    @NotNull
     public List<Double> getNiceScoreHistory() {
         return niceScoreHistory;
     }
@@ -137,7 +128,6 @@ public class Child implements Comparable<Child>, Serializable {
         niceScoreHistory.add(niceScore);
     }
 
-    //@NotNull
     public Double getAssignedBudget() {
         return assignedBudget;
     }
@@ -146,7 +136,6 @@ public class Child implements Comparable<Child>, Serializable {
         this.assignedBudget = assignedBudget;
     }
 
-    //@NotNull
     public List<Gift> getReceivedGifts() {
         return receivedGifts;
     }
@@ -166,7 +155,6 @@ public class Child implements Comparable<Child>, Serializable {
         setReceivedGifts(new ArrayList<>());
     }
 
-    //@NotNull
     public Double getTotalCostOfGifts() {
         Double sum = 0.0;
         for (Gift gift: getReceivedGifts()) {

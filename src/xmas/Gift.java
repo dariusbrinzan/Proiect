@@ -15,7 +15,6 @@ public class Gift implements Comparable<Gift>, Serializable {
         this.category = category;
     }
 
-    //@NotNull
     public String getProductName() {
         return productName;
     }
@@ -24,7 +23,6 @@ public class Gift implements Comparable<Gift>, Serializable {
         this.productName = productName;
     }
 
-    //@NotNull
     public Double getPrice() {
         return price;
     }
@@ -33,7 +31,6 @@ public class Gift implements Comparable<Gift>, Serializable {
         this.price = price;
     }
 
-    //@NotNull
     public Category getCategory() {
         return category;
     }

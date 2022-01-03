@@ -23,7 +23,6 @@ public class Input {
         this.initialData = initialData;
     }
 
-    //@NotNull
     public Integer getNumberOfYears() {
         return numberOfYears;
     }
@@ -32,7 +31,6 @@ public class Input {
         this.numberOfYears = numberOfYears;
     }
 
-    //@NotNull
     public Double getSantaBudget() {
         return santaBudget;
     }
@@ -41,7 +39,6 @@ public class Input {
         this.santaBudget = santaBudget;
     }
 
-    //@NotNull
     public InitialData getInitialData() {
         return initialData;
     }
@@ -50,7 +47,6 @@ public class Input {
         this.initialData = initialData;
     }
 
-    //@NotNull
     public Double getBudgetUnit() {
         return budgetUnit;
     }

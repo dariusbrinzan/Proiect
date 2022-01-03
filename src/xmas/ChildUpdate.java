@@ -15,7 +15,6 @@ public class ChildUpdate {
         this.giftsPreferences = giftsPreferences;
     }
 
-    //@NotNull
     public Integer getId() {
         return id;
     }
@@ -32,7 +31,6 @@ public class ChildUpdate {
         this.niceScore = niceScore;
     }
 
-    //@NotNull
     public Category[] getGiftsPreferences() {
         return giftsPreferences;
     }
@@ -41,7 +39,7 @@ public class ChildUpdate {
         this.giftsPreferences = giftsPreferences;
     }
 
-    //@Override
+    @Override
     public String toString() {
         return "ChildUpdate{" +
                 "id=" + id +
