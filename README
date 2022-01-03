@@ -1,0 +1,5 @@
+322CA - Brinzan Darius Ionut
+
+In clasa main realizez citirea json-urilor utilizand gson fiindca dupa cateva search-uri am observat ca gson
+este mult mai bun decat json . Pe langa clasa de main + package-ul de main, am realizat package-ul xmas unde se afla
+toata implementarea proiectului meu .
