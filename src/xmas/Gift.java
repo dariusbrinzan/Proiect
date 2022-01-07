@@ -9,47 +9,47 @@ public class Gift implements Comparable<Gift>, Serializable {
     private Double price;
     private Category category;
 
-    public Gift(String productName, Double price, Category category) {
+    public Gift(final String productName,
+                final Double price,
+                final Category category) {
         this.productName = productName;
         this.price = price;
         this.category = category;
     }
 
-    public String getProductName() {
+    public final String getProductName() {
         return productName;
     }
 
-    public void setProductName(String productName) {
+    public final void setProductName(String productName) {
         this.productName = productName;
     }
 
-    public Double getPrice() {
+    public final Double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public final void setPrice(Double price) {
         this.price = price;
     }
 
-    public Category getCategory() {
+    public final Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public final void setCategory(Category category) {
         this.category = category;
     }
 
     @Override
-    public String toString() {
-        return "Gift{" +
-                "productName='" + productName + '\'' +
-                ", price=" + price +
-                ", category=" + category +
-                '}';
+    public final String toString() {
+        return "Gift{" + "productName='" + productName
+                + '\'' + ", price=" + price
+                + ", category=" + category + '}';
     }
 
     @Override
-    public int compareTo(Gift other) {
+    public int compareTo(final Gift other) {
         if (this.getPrice() < other.getPrice()) {
             return -1;
         }

@@ -1,13 +1,13 @@
 package xmas;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import enums.Category;
-import enums.Cities;
-
-import java.io.Serializable;
 import java.lang.reflect.Array;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class Input {
@@ -15,67 +15,75 @@ public class Input {
     private Double santaBudget;
     private InitialData initialData;
     private Double budgetUnit;
-    private AnnualChange[] annualChanges;
+    private final AnnualChange[] annualChanges;
 
-    public Input(Integer numberOfYears, Double santaBudget, InitialData initialData) {
+    public Input(final Integer numberOfYears,
+                 final Double santaBudget,
+                 final InitialData initialData,
+                 final AnnualChange[] annualChanges) {
         this.numberOfYears = numberOfYears;
         this.santaBudget = santaBudget;
         this.initialData = initialData;
+        this.annualChanges = annualChanges;
     }
 
-    public Integer getNumberOfYears() {
+    public final Integer getNumberOfYears() {
         return numberOfYears;
     }
 
-    public void setNumberOfYears(Integer numberOfYears) {
+    public final void setNumberOfYears(Integer numberOfYears) {
         this.numberOfYears = numberOfYears;
     }
 
-    public Double getSantaBudget() {
+    public final Double getSantaBudget() {
         return santaBudget;
     }
 
-    public void setSantaBudget(Double santaBudget) {
+    public final void setSantaBudget(Double santaBudget) {
         this.santaBudget = santaBudget;
     }
 
-    public InitialData getInitialData() {
+    public final InitialData getInitialData() {
         return initialData;
     }
 
-    public void setInitialData(InitialData initialData) {
+    public final void setInitialData(InitialData initialData) {
         this.initialData = initialData;
     }
 
-    public Double getBudgetUnit() {
+    public final Double getBudgetUnit() {
         return budgetUnit;
     }
 
-    public void setBudgetUnit(Double budgetUnit) {
+    public final void setBudgetUnit(Double budgetUnit) {
         this.budgetUnit = budgetUnit;
     }
 
-    public void createMapGiftCategoriesSortedByGiftsPrice() {
+    /**
+     * Map for gifts
+     */
+    public final void createMapGiftCategoriesSortedByGiftsPrice() {
         getInitialData().initGiftCategoriesSortedByGiftsPrice(getInitialData().getSantaGiftsList());
     }
 
     @Override
-    public String toString() {
-        return "Input{" +
-                "numberOfYears=" + numberOfYears +
-                ", santaBudget=" + santaBudget +
-                ", initialData=" + initialData +
-                '}';
+    public final String toString() {
+        return "Input{"
+                + "numberOfYears=" + numberOfYears
+                + ", santaBudget=" + santaBudget
+                + ", initialData=" + initialData + '}';
     }
 
-    private static <T> T[] concatDistinctWithStream(T[] array1, T[] array2) {
+    private static <T> T[] concatDistinctWithStream(final T[] array1, final T[] array2) {
         return Stream.concat(Arrays.stream(array1), Arrays.stream(array2)).distinct()
-                .toArray(size -> (T[]) Array.newInstance(array1.getClass().getComponentType(), size));
+                .toArray(size ->
+                        (T[]) Array.newInstance(array1.getClass().getComponentType(), size));
     }
 
-    private static <T> T[] concatWithStream(T[] array1, T[] array2) {
+    private static <T> T[] concatWithStream(final T[] array1, final T[] array2) {
         return Stream.concat(Arrays.stream(array1), Arrays.stream(array2))
-                .toArray(size -> (T[]) Array.newInstance(array1.getClass().getComponentType(), size));
+                .toArray(size ->
+                        (T[]) Array.newInstance(array1.getClass().getComponentType(), size));
     }
 
     private void calculateBudgetUnit() {
@@ -96,7 +104,8 @@ public class Input {
         for (Child child: getInitialData().getChildren()) {
             double childAssignedBudget =  child.getAssignedBudget();
             for (Category giftCategory: child.getGiftsPreferences()) {
-                Map<Category, PriorityQueue<Gift>> giftsMap = getInitialData().getGiftCategoriesSortedByGiftsPrice();
+                Map<Category, PriorityQueue<Gift>>
+                        giftsMap = getInitialData().getGiftCategoriesSortedByGiftsPrice();
                 Gift gift = giftsMap.get(giftCategory).peek();
                 if (gift != null) {
                     if (childAssignedBudget >= gift.getPrice()) {
@@ -108,7 +117,7 @@ public class Input {
         }
     }
 
-    private void updateChildren(AnnualChange annualChange) {
+    private void updateChildren(final AnnualChange annualChange) {
         for (ChildUpdate childUpdate: annualChange.getChildrenUpdates()) {
             for (Child child: getInitialData().getChildren()) {
                 if (childUpdate.getId().equals(child.getId())) {
@@ -116,22 +125,23 @@ public class Input {
                         child.addNiceScoreToHistory(childUpdate.getNiceScore());
                         child.setNiceScore(childUpdate.getNiceScore());
                     }
-                    child.setGiftsPreferences(concatDistinctWithStream(childUpdate.getGiftsPreferences(), child.getGiftsPreferences()));
+                    child.setGiftsPreferences(concatDistinctWithStream(
+                            childUpdate.getGiftsPreferences(), child.getGiftsPreferences()));
                 }
             }
         }
     }
 
-    private void applyTheAnnualChange(AnnualChange annualChange) {
+    private void applyTheAnnualChange(final AnnualChange annualChange) {
         getInitialData().incrementChildrenAge();
-        getInitialData().removeAdultsFromChildren();
+        getInitialData().removeAdultsChildrenFromChildrenList();
         setSantaBudget(annualChange.getNewSantaBudget());
         getInitialData().setSantaGiftsList(
                 concatWithStream(getInitialData().getSantaGiftsList(), annualChange.getNewGifts()));
         getInitialData().addGiftsToEachCategoryInMap(annualChange.getNewGifts());
         getInitialData().getChildren().addAll(Arrays.asList(annualChange.getNewChildren()));
         getInitialData().initChildrenNiceScoreHistory();
-        getInitialData().removeAdultsFromChildren();
+        getInitialData().removeAdultsChildrenFromChildrenList();
         updateChildren(annualChange);
     }
 
@@ -144,16 +154,23 @@ public class Input {
         distributeGifts();
     }
 
-    public AnnualChildren startNenorocire() throws Exception {
+    /**
+     * Start of a new simulation, new year
+     * @return annualChildren
+     * @throws Exception
+     */
+    public final AnnualChildren startSimulation() throws Exception {
         AnnualChildren annualChildren = new AnnualChildren(numberOfYears);
-        getInitialData().removeAdultsFromChildren();
+        getInitialData().removeAdultsChildrenFromChildrenList();
         getInitialData().initChildrenNiceScoreHistory();
         initRound();
-        annualChildren.addChildren(0, (ArrayList<Child>) ObjectCloner.deepCopy(getInitialData().getChildren()));
+        annualChildren.addChildren(0,
+                (ArrayList<Child>) ObjectCloner.deepCopy(getInitialData().getChildren()));
         for (int i = 0; i < numberOfYears; ++i) {
             applyTheAnnualChange(annualChanges[i]);
             initRound();
-            annualChildren.addChildren(i + 1, (ArrayList<Child>) ObjectCloner.deepCopy(getInitialData().getChildren()));
+            annualChildren.addChildren(i + 1,
+                    (ArrayList<Child>) ObjectCloner.deepCopy(getInitialData().getChildren()));
         }
         return annualChildren;
     }

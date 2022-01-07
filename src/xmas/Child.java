@@ -1,6 +1,5 @@
 package xmas;
 
-import com.google.gson.annotations.Expose;
 import enums.Category;
 import enums.Cities;
 
@@ -22,9 +21,9 @@ public class Child implements Comparable<Child>, Serializable {
     private Double assignedBudget;
     private List<Gift> receivedGifts;
 
-    public final static Integer BabyMaxAge = 5;
-    public final static Integer KidMaxAge = 12;
-    public final static Integer TeenMaxAge = 19;
+    public static final Integer babyMaxAge = 5;
+    public static final Integer kidMaxAge = 12;
+    public static final Integer teenMaxAge = 19;
 
     public Child(final Integer id,
                  final String lastName,
@@ -45,117 +44,132 @@ public class Child implements Comparable<Child>, Serializable {
         this.receivedGifts = new ArrayList<>();
     }
 
-    public Integer getId() {
+    public final Integer getId() {
         return id;
     }
 
-    public void setId(final Integer id) {
+    public final void setId(final Integer id) {
         this.id = id;
     }
 
-    public String getLastName() {
+    public final String getLastName() {
         return lastName;
     }
 
-    public void setLastName(final String lastName) {
+    public final void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
-    public String getFirstName() {
+    public final String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(final String firstName) {
+    public final void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
-    public Integer getAge() {
+    public final Integer getAge() {
         return age;
     }
 
-    public void setAge(final Integer age) {
+    public final void setAge(final Integer age) {
         this.age = age;
     }
 
-    public Cities getCity() {
+    public final Cities getCity() {
         return city;
     }
 
-    public void setCity(final Cities city) {
+    public final void setCity(final Cities city) {
         this.city = city;
     }
 
-    public Double getNiceScore() {
+    public final Double getNiceScore() {
         return niceScore;
     }
 
-    public void setNiceScore(final Double niceScore) {
+    public final void setNiceScore(final Double niceScore) {
         this.niceScore = niceScore;
     }
 
-    public Category[] getGiftsPreferences() {
+    public final Category[] getGiftsPreferences() {
         return giftsPreferences;
     }
 
-    public void setGiftsPreferences(final Category[] giftsPreferences) {
+    public final void setGiftsPreferences(final Category[] giftsPreferences) {
         this.giftsPreferences = giftsPreferences;
     }
 
-    public Double getAverageScore() {
+    public final Double getAverageScore() {
         return averageScore;
     }
 
-    public void setAverageScore(final Double averageScore) {
+    public final void setAverageScore(final Double averageScore) {
         this.averageScore = averageScore;
     }
 
-    public boolean isAdult() {
+    public final boolean isAdult() {
         return getAge() > 18;
     }
 
-    public List<Double> getNiceScoreHistory() {
+    public final List<Double> getNiceScoreHistory() {
         return niceScoreHistory;
     }
 
-    public void setNiceScoreHistory(final List<Double> niceScoreHistory) {
+    public final void setNiceScoreHistory(final List<Double> niceScoreHistory) {
         this.niceScoreHistory = niceScoreHistory;
     }
 
-    public void addNiceScoreToHistory(final Double niceScore) {
+    /**
+     * Add nice score to history list
+     * @param niceScore
+     */
+    public final void addNiceScoreToHistory(final Double niceScore) {
         if (niceScoreHistory == null) {
             niceScoreHistory = new ArrayList<>();
         }
         niceScoreHistory.add(niceScore);
     }
 
-    public Double getAssignedBudget() {
+    public final Double getAssignedBudget() {
         return assignedBudget;
     }
 
-    public void setAssignedBudget(final Double assignedBudget) {
+    public final void setAssignedBudget(final Double assignedBudget) {
         this.assignedBudget = assignedBudget;
     }
 
-    public List<Gift> getReceivedGifts() {
+    public final List<Gift> getReceivedGifts() {
         return receivedGifts;
     }
 
-    public void setReceivedGifts(final List<Gift> receivedGifts) {
+    public final void setReceivedGifts(final List<Gift> receivedGifts) {
         this.receivedGifts = receivedGifts;
     }
 
-    public void addReceivedGift(final Gift gift) {
+    /**
+     * Add gift to the list
+     * @param gift
+     */
+    public final void addReceivedGift(final Gift gift) {
         if (receivedGifts == null) {
             receivedGifts = new ArrayList<>();
         }
         receivedGifts.add(gift);
     }
 
-    public void resetReceivedGifts() {
+    /**
+     *
+     */
+    public final void resetReceivedGifts() {
         setReceivedGifts(new ArrayList<>());
     }
 
-    public Double getTotalCostOfGifts() {
+    /**
+     * Return total cost of child gifts
+     * @return
+     */
+    public final Double getTotalCostOfGifts() {
         Double sum = 0.0;
         for (Gift gift: getReceivedGifts()) {
             sum += gift.getPrice();
@@ -164,24 +178,18 @@ public class Child implements Comparable<Child>, Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Child{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", age=" + age +
-                ", city=" + city +
-                ", niceScore=" + niceScore +
-                ", giftsPreferences=" + Arrays.toString(giftsPreferences) +
-                ", averageScore=" + averageScore +
-                ", niceScoreHistory=" + niceScoreHistory +
-                ", assignedBudget=" + assignedBudget +
-                ", receivedGifts=" + receivedGifts +
-                '}';
+    public final String toString() {
+        return "Child{" + "id=" + id + ", lastName='" + lastName + '\''
+                + ", firstName='" + firstName + '\'' + ", age=" + age
+                + ", city=" + city + ", niceScore=" + niceScore
+                + ", giftsPreferences=" + Arrays.toString(giftsPreferences)
+                + ", averageScore=" + averageScore + ", niceScoreHistory="
+                + niceScoreHistory + ", assignedBudget=" + assignedBudget
+                + ", receivedGifts=" + receivedGifts + '}';
     }
 
     @Override
-    public int compareTo(Child other) {
+    public final int compareTo(final Child other) {
         if (id < other.getId()) {
             return -1;
         }

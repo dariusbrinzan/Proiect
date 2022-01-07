@@ -57,8 +57,7 @@ public enum Cities {
 
     @Override
     public String toString() {
-        return "Cities{" +
-                "value='" + value + '\'' +
-                '}';
+        return "Cities{"
+                + "value='" + value + '\'' + '}';
     }
 }

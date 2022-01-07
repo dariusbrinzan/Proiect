@@ -6,9 +6,9 @@ import java.util.List;
 
 public class AnnualChildren {
     static class Children {
-        List<Child> children;
+        private List<Child> children;
 
-        public Children() {
+        Children() {
             children = new ArrayList<>();
         }
 
@@ -20,15 +20,14 @@ public class AnnualChildren {
             return children;
         }
 
-        public void setChildren(List<Child> children) {
+        public void setChildren(final List<Child> children) {
             this.children = children;
         }
 
         @Override
         public String toString() {
-            return "Children{" +
-                    "children=" + children +
-                    '}';
+            return "Children{"
+                    + "children=" + children + '}';
         }
     }
 
@@ -41,22 +40,31 @@ public class AnnualChildren {
         }
     }
 
-    public Children[] getAnnualChildren() {
+    public final Children[] getAnnualChildren() {
         return annualChildren;
     }
 
-    public void addChildren(final int year, final Child[] arr) {
+    /**
+     * Method to add children
+     * @param year
+     * @param arr
+     */
+    public final void addChildren(final int year, final Child[] arr) {
         annualChildren[year].getChildren().addAll(Arrays.asList(arr));
     }
 
-    public void addChildren(final int year, final List<Child> list) {
+    /**
+     * Method to add children
+     * @param year
+     * @param list
+     */
+    public final void addChildren(final int year, final List<Child> list) {
         annualChildren[year].getChildren().addAll(list);
     }
 
     @Override
-    public String toString() {
-        return "AnnualChildren{" +
-                "annualChildren=" + Arrays.toString(annualChildren) +
-                '}';
+    public final String toString() {
+        return "AnnualChildren{" + "annualChildren=" + Arrays.toString(annualChildren)
+                + '}';
     }
 }

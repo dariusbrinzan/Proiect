@@ -1,8 +1,6 @@
 package xmas;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class AnnualChange {
     private Double newSantaBudget;
@@ -20,45 +18,43 @@ public class AnnualChange {
         this.childrenUpdates = childrenUpdates;
     }
 
-    public Double getNewSantaBudget() {
+    public final Double getNewSantaBudget() {
         return newSantaBudget;
     }
 
-    public void setNewSantaBudget(Double newSantaBudget) {
+    public final void setNewSantaBudget(Double newSantaBudget) {
         this.newSantaBudget = newSantaBudget;
     }
 
-    public Gift[] getNewGifts() {
+    public final Gift[] getNewGifts() {
         return newGifts;
     }
 
-    public void setNewGifts(Gift[] newGifts) {
+    public final void setNewGifts(Gift[] newGifts) {
         this.newGifts = newGifts;
     }
 
-    public Child[] getNewChildren() {
+    public final Child[] getNewChildren() {
         return newChildren;
     }
 
-    public void setNewChildren(Child[] newChildren) {
+    public final void setNewChildren(Child[] newChildren) {
         this.newChildren = newChildren;
     }
 
-    public ChildUpdate[] getChildrenUpdates() {
+    public final ChildUpdate[] getChildrenUpdates() {
         return childrenUpdates;
     }
 
-    public void setChildrenUpdates(ChildUpdate[] childrenUpdates) {
+    public final void setChildrenUpdates(ChildUpdate[] childrenUpdates) {
         this.childrenUpdates = childrenUpdates;
     }
 
     @Override
-    public String toString() {
-        return "AnnualChange{" +
-                "newSantaBudget=" + newSantaBudget +
-                ", newGifts=" + Arrays.toString(newGifts) +
-                ", newChildren=" + Arrays.toString(newChildren) +
-                ", childrenUpdates=" + Arrays.toString(childrenUpdates) +
-                '}';
+    public final String toString() {
+        return "AnnualChange{" + "newSantaBudget=" + newSantaBudget
+                + ", newGifts=" + Arrays.toString(newGifts) + ", newChildren="
+                + Arrays.toString(newChildren) + ", childrenUpdates="
+                + Arrays.toString(childrenUpdates) + '}';
     }
 }

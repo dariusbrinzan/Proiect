@@ -1,5 +1,43 @@
-322CA - Brinzan Darius Ionut
+322CA - Brinzan Darius-Ionut
 
 In clasa main realizez citirea json-urilor utilizand gson fiindca dupa cateva search-uri am observat ca gson
-este mult mai bun decat json . Pe langa clasa de main + package-ul de main, am realizat package-ul xmas unde se afla
-toata implementarea proiectului meu .
+este mai intuitiv. Pe langa clasa de main + package-ul de main, am realizat package-ul xmas unde se afla
+toata implementarea proiectului meu.
+
+Flow general: In clasa main se parseaza json-urile cu gson, creandu-se o instanta a clasei Input. In clasa Input care contine
+încapsulată toata informatia, se aplica flow-ul simularii proiectului meu .
+
+Clasa de Child, este clasa care imi creeaza obiecte de tip 'Copil' unde construiesc un constructor cu toti parametri pe care
+ii are un copil, getter + setter pentru fiecare set de date pe care clasa mea le contine + am mai realizat in plus si metode
+care care imi calculeaza costul total al gift-urilor pentru obiectul copil curent, adaugat in lista cadourile adaugate .
+
+Clasa AnnualChange se refera la schimbarile / actualizarile care sunt suferite la trecerea unui an .
+Clasa AnnualChildren se refera la schimbarile suferite de catre un copil la trecerea unui an.
+
+Clasa ChildUpdate se refera la update-urile in preferinte pe care le sufera un obiect de tip copil la trecerea unui an.
+
+Clasa Gift este clasa care descrie un obiect de tip cadou + am realizat o metoda noua de compareTo pentru a compara
+preturile .
+
+Clasa ObjectCloner este o clasa care imi cloneaza obiecte care sunt deja create utilizand un DeepCopy.
+
+Clasa InitialData este o clasa cu datele initiale unde am ca set de date o lista de copii, un array in care am gift-urile
+si un map unde am sortat categoriile cadourilor in functie de pretul acestora . In continuare, am realizat metode in care
+am plasat copii in functie de categoria de varsta in care se incadreaza + calculul averageScore-ului in functie de varsta
+lor + incrementarea varstei in functie de trecerea anilor .
+
+Clasa Input este clasa unde pot spune ca se intampla majoritatea flow-ului proiectului meu . In aceasta, ca date ale acesteia
+avem informatii care ni s-au dat in Json-uri . Avem pe cati ani se face simularea, bugetul mosului, datele initiale (instantierea
+clasei InitialData, bugetul si schimbarile anuale . Am calculat budgetUnit-ul dupa care l-am alocat fiecarui copil in parte.
+Am mai realizat metode in care am distribuit gift-urile la fiecare copil in parte, am updatat scorurile copiilor dupa ce a trecut
+un an, am aplicat schimbarile efectuate si am inceput o noua simulare a programului .
+
+
+Din pacate, Pattern nu am reusit sa implementez, dar am incercat sa mentin un design cat mai apropriat de conceptele OOP.
+M-am apucat inainte de vacanta de proiect, inainte de lab-ul de Strategy Pattern cu care cred ca as fi reusit sa-l implementez
+in cadrul proiectului meu. (doar o idee)
+
+
+
+
+

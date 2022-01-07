@@ -2,7 +2,14 @@ package xmas;
 
 import enums.Category;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Arrays;
+
 
 public class InitialData {
     private List<Child> children;
@@ -23,62 +30,89 @@ public class InitialData {
         initGiftCategoriesSortedByGiftsPrice(santaGiftsList);
     }
 
-    private void initChildren(final Child[] children) {
+    /**
+     * init children linked list
+     * @param children
+     */
+    public void initChildren(final Child[] children) {
         this.children = new LinkedList<Child>();
         Collections.addAll(this.children, children);
     }
 
-    private void addGiftCategoriesToMap() {
+    /**
+     * add gifts to map
+     */
+    public void addGiftCategoriesToMap() {
         for (Category category: Category.values()) {
             giftCategoriesSortedByGiftsPrice.put(category, new PriorityQueue<>());
         }
     }
 
-    public void addGiftsToEachCategoryInMap(final Gift [] santaGiftsList) {
+    /**
+     * add gifts to each category
+     * @param santaGiftsList
+     */
+    public final void addGiftsToEachCategoryInMap(final Gift[] santaGiftsList) {
         for (Gift gift: santaGiftsList) {
             giftCategoriesSortedByGiftsPrice.get(gift.getCategory()).add(gift);
         }
     }
 
-    public void initGiftCategoriesSortedByGiftsPrice(final Gift [] santaGiftsList) {
+    /**
+     * init gift sorted by gifts price
+     * @param santaGiftsList
+     */
+    public final void initGiftCategoriesSortedByGiftsPrice(final Gift[] santaGiftsList) {
         giftCategoriesSortedByGiftsPrice = new HashMap<>();
         addGiftCategoriesToMap();
         addGiftsToEachCategoryInMap(santaGiftsList);
     }
 
-    public List<Child> getChildren() {
+    public final List<Child> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Child> children) {
+    public final void setChildren(final List<Child> children) {
         this.children = children;
     }
 
-    public Gift[] getSantaGiftsList() {
+    public final Gift[] getSantaGiftsList() {
         return santaGiftsList;
     }
 
-    public void setSantaGiftsList(Gift[] santaGiftsList) {
+    public final void setSantaGiftsList(final Gift[] santaGiftsList) {
         this.santaGiftsList = santaGiftsList;
     }
 
-    public Map<Category, PriorityQueue<Gift>> getGiftCategoriesSortedByGiftsPrice() {
+    public final Map<Category, PriorityQueue<Gift>> getGiftCategoriesSortedByGiftsPrice() {
         return giftCategoriesSortedByGiftsPrice;
     }
 
-    public void setGiftCategoriesSortedByGiftsPrice(Map<Category, PriorityQueue<Gift>> giftCategoriesSortedByGiftsPrice) {
+    public final void setGiftCategoriesSortedByGiftsPrice(final Map<Category,
+            PriorityQueue<Gift>> giftCategoriesSortedByGiftsPrice) {
         this.giftCategoriesSortedByGiftsPrice = giftCategoriesSortedByGiftsPrice;
     }
 
-    public void removeChild(Child child) {
+    /**
+     * remove child
+     * @param child
+     */
+    public final void removeChild(final Child child) {
         children.remove(child);
     }
 
-    public void removeAdultsFromChildren() {
+    /**
+     * remove one child from list when he's over 18
+     */
+    public final void removeAdultsChildrenFromChildrenList() {
         children.removeIf(Child::isAdult);
     }
 
-    public Double averageScoreOfChild(Child child) {
+    /**
+     * @param child
+     * @return average score for specific child
+     */
+    public final Double averageScoreOfChild(final Child child) {
         double sum = 0.0;
         for (double score: child.getNiceScoreHistory()) {
             sum += score;
@@ -86,32 +120,43 @@ public class InitialData {
         return sum / child.getNiceScoreHistory().size();
     }
 
-    public Double weightedAverageScoreOfChild(Child child) {
+    /**
+     * @param child
+     * @return weighted average score for specific child
+     */
+    public final Double weightedAverageScoreOfChild(final Child child) {
         double sum = 0.0;
         int i = 1;
         for (double score: child.getNiceScoreHistory()) {
             sum += i * score;
             ++i;
         }
-        int sum_of_weights = child.getNiceScoreHistory().size() * (child.getNiceScoreHistory().size() + 1) / 2;
-        return sum / sum_of_weights;
+        int sumOfWeights =
+                child.getNiceScoreHistory().size() * (child.getNiceScoreHistory().size() + 1) / 2;
+        return sum / sumOfWeights;
     }
 
-    public void setAverageScoreForEachChild() {
+    /**
+     * Average score for each type of child
+     */
+    public final void setAverageScoreForEachChild() {
         for (Child child: getChildren()) {
-            if (child.getAge() < Child.BabyMaxAge) {
+            if (child.getAge() < Child.babyMaxAge) {
                 child.setAverageScore(10.0);
-            } else if (child.getAge() < Child.KidMaxAge) {
+            } else if (child.getAge() < Child.kidMaxAge) {
                 Double averageScore = averageScoreOfChild(child);
                 child.setAverageScore(averageScore);
-            } else if (child.getAge() < Child.TeenMaxAge) {
+            } else if (child.getAge() < Child.teenMaxAge) {
                 Double weightedAverageScore = weightedAverageScoreOfChild(child);
                 child.setAverageScore(weightedAverageScore);
             }
         }
     }
 
-    public void initChildrenNiceScoreHistory() {
+    /**
+     * Children nice score history
+     */
+    public final void initChildrenNiceScoreHistory() {
         for (Child child: children) {
             if (child.getNiceScoreHistory() == null) {
                 child.addNiceScoreToHistory(child.getNiceScore());
@@ -119,23 +164,28 @@ public class InitialData {
         }
     }
 
-    public void resetChildrenReceivedGifts() {
+    /**
+     * Reset children gifts after passing a new year
+     */
+    public final void resetChildrenReceivedGifts() {
         for (Child child: getChildren()) {
             child.resetReceivedGifts();
         }
     }
 
-    public void incrementChildrenAge() {
+    /**
+     * Increment children age after passing a new year
+     */
+    public final void incrementChildrenAge() {
         for (Child child: getChildren()) {
             child.setAge(child.getAge() + 1);
         }
     }
 
     @Override
-    public String toString() {
-        return "InitialData{" +
-                "children=" + children +
-                ", santaGiftsList=" + Arrays.toString(santaGiftsList) +
-                '}';
+    public final String toString() {
+        return "InitialData{"
+                + "children=" + children
+                + ", santaGiftsList=" + Arrays.toString(santaGiftsList) + '}';
     }
 }

@@ -9,42 +9,43 @@ public class ChildUpdate {
     private Double niceScore;
     private Category[] giftsPreferences;
 
-    public ChildUpdate(Integer id, Double niceScore, Category[] giftsPreferences) {
+    public ChildUpdate(final Integer id,
+                       final Double niceScore,
+                       final Category[] giftsPreferences) {
         this.id = id;
         this.niceScore = niceScore;
         this.giftsPreferences = giftsPreferences;
     }
 
-    public Integer getId() {
+    public final Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public final void setId(Integer id) {
         this.id = id;
     }
 
-    public Double getNiceScore() {
+    public final Double getNiceScore() {
         return niceScore;
     }
 
-    public void setNiceScore(Double niceScore) {
+    public final void setNiceScore(Double niceScore) {
         this.niceScore = niceScore;
     }
 
-    public Category[] getGiftsPreferences() {
+    public final Category[] getGiftsPreferences() {
         return giftsPreferences;
     }
 
-    public void setGiftsPreferences(Category[] giftsPreferences) {
+    public final void setGiftsPreferences(Category[] giftsPreferences) {
         this.giftsPreferences = giftsPreferences;
     }
 
     @Override
-    public String toString() {
-        return "ChildUpdate{" +
-                "id=" + id +
-                ", niceScore=" + niceScore +
-                ", giftsPreferences=" + Arrays.toString(giftsPreferences) +
-                '}';
+    public final String toString() {
+        return "ChildUpdate{"
+                + "id=" + id
+                + ", niceScore=" + niceScore
+                + ", giftsPreferences=" + Arrays.toString(giftsPreferences) + '}';
     }
 }

@@ -5,11 +5,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class ObjectCloner {
+public final class ObjectCloner {
     private ObjectCloner() {
     }
 
-    static public Object deepCopy(Object oldObj) throws Exception {
+    static Object deepCopy(final Object oldObj) throws Exception {
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
         try {
@@ -21,7 +21,7 @@ public class ObjectCloner {
                     new ByteArrayInputStream(bos.toByteArray());
             ois = new ObjectInputStream(bin);
             return ois.readObject();
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Exception in ObjectCloner = " + e);
             throw(e);
         } finally {
